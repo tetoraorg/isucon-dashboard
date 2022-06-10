@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - ./fluentd/config:/fluentd/etc
+      - ./fluentd/log:/fluentd/log/fluentd
+    ports:
+      - '24223:24223'
+    environment:
+      - FLUENTD_CONF=fluent_sender.conf
+
+  nginx:
+    image: nginx:1.22
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/log:/var/log/nginx
+
