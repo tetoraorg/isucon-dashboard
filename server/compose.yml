@@ -2,6 +2,7 @@ version: '3'
 
 services:
   setup:
+    container_name: setup
     image: elasticsearch:${STACK_VERSION}
     volumes:
       - certs:/usr/share/elasticsearch/config/certs
@@ -51,10 +52,11 @@ services:
       retries: 120
 
   es:
+    container_name: es
+    image: elasticsearch:${STACK_VERSION}
     depends_on:
       setup:
         condition: service_healthy
-    image: elasticsearch:${STACK_VERSION}
     volumes:
       - certs:/usr/share/elasticsearch/config/certs
       - esdata01:/usr/share/elasticsearch/data
@@ -93,10 +95,11 @@ services:
       retries: 120
 
   kibana:
+    container_name: kibana
+    image: kibana:${STACK_VERSION}
     depends_on:
       es:
         condition: service_healthy
-    image: kibana:${STACK_VERSION}
     volumes:
       - certs:/usr/share/kibana/config/certs
       - kibanadata:/usr/share/kibana/data
