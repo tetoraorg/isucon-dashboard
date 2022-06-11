@@ -1,6 +1,11 @@
 # isucon-dashboard
 
-```bash
-cd ./server
-docker compose up --build -d
+Simple EFK dashboard for ISUCON.
+
+nginx(s) -> fluentd(s) -> fluentd -> elasticsearch -> kibana
+
+## Quick start
+
+```sh
+./up.sh
 ```
