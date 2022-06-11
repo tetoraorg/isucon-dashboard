@@ -14,7 +14,7 @@ docker compose up --build
 
 ```sh
 # cd ./client_local
-./install.sh
+curl -fsSL https://toolbelt.treasuredata.com/sh/install-ubuntu-bionic-td-agent4.sh | sh
 ```
 
 3. 送信側のfluentdを起動
@@ -24,10 +24,10 @@ docker compose up --build
 sudo td-agent -c ./fluentd/config/fluent_sender.conf
 ```
 
-(バックグラウンドで立てる場合は`-d`)
-
 4. その後↓などでnginxがあるサーバーにアクセスすると受信側の`/fluentd/log/access_log.*.log`にログが書き込まれます
 
 ```sh
 curl localhost:80
 ```
+
+Or use setup.sh
