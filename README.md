@@ -7,5 +7,6 @@ nginx(s) -> fluentd(s) -> fluentd -> elasticsearch -> kibana
 ## Quick start
 
 ```sh
+cp ./server/.env.example ./server/.env
 ./up.sh
 ```
