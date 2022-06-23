@@ -2,12 +2,14 @@ version: '3'
 
 services:
   nginx:
-    image: nginx
+    image: nginx:stable
     ports:
       - '80:80'
 
-  fluentd:
-    build:
-      context: ./fluentd
+  fluent-bit:
+    image: fluent/fluent-bit:1.9
     volumes:
-      - ./fluentd/config:/fluentd/etc
+      - ./fluent-bit/etc:/fluent-bit/etc
+      - ./fluent-bit/log:/fluent-bit/log
+    ports:
+      - '24224:24224'

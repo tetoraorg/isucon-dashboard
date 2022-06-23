@@ -122,22 +122,21 @@ services:
       timeout: 10s
       retries: 120
 
-  fluentd:
-    container_name: fluentd
-    build:
-      context: ./fluentd
+  fluent-bit:
+    container_name: fluent-bit
+    image: fluent/fluent-bit:1.9
     depends_on:
       es:
         condition: service_healthy
     volumes:
-      - certs:/fluentd/certs
-      - ./fluentd/config:/fluentd/etc
-      - ./fluentd/log:/fluentd/log
+      - certs:/fluent-bit/certs
+      - ./fluent-bit/etc:/fluent-bit/etc
+      - ./fluent-bit/log:/fluent-bit/log
     ports:
       - '24224:24224'
     environment:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-      - SSL_CERT_FILE=/fluentd/certs/ca/ca.crt
+      - SSL_CERT_FILE=/fluent-bit/certs/ca/ca.crt
 
 volumes:
   certs:
