@@ -3,11 +3,11 @@
 ROOT=$PWD
 
 echo "Starting server..."
-cd $PWD/server
+cd $ROOT/server
 docker compose up --build -d
 echo "Finished!"
 
 echo "Starting client..."
-cd $PWD/client
+cd $ROOT/client
 docker compose up --build -d
 echo "Finished!"
