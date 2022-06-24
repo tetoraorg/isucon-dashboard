@@ -1,15 +1,24 @@
 version: '3'
 
 services:
-  nginx:
+  client-nginx:
+    container_name: client-nginx
     image: nginx:stable
+    volumes:
+      - ./nginx/log/nginx:/var/log/nginx
     ports:
       - '80:80'
 
-  fluent-bit:
+  client-fluent-bit:
+    container_name: client-flient-bit
     image: fluent/fluent-bit:1.9
+    environment:
+      - SERVER_HOST=fluent-bit
     volumes:
       - ./fluent-bit/etc:/fluent-bit/etc
       - ./fluent-bit/log:/fluent-bit/log
-    ports:
-      - '24224:24224'
+      - ./nginx/log/nginx:/var/log/nginx
+
+networks:
+  default:
+    name: isucon-dashboard_default

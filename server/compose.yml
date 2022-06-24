@@ -145,3 +145,7 @@ volumes:
     driver: local
   kibanadata:
     driver: local
+
+networks:
+  default:
+    name: isucon-dashboard_default
