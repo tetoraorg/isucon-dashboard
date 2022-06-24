@@ -130,8 +130,8 @@ services:
         condition: service_healthy
     volumes:
       - certs:/fluent-bit/certs
-      - ./fluent-bit/etc:/fluent-bit/etc
-      - ./fluent-bit/log:/fluent-bit/log
+      - ./fluent-bit:/fluent-bit/etc
+      - ./log/fluent-bit:/fluent-bit/log
     ports:
       - '24224:24224'
     environment:
@@ -145,7 +145,3 @@ volumes:
     driver: local
   kibanadata:
     driver: local
-
-networks:
-  default:
-    name: isucon-dashboard_default

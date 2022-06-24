@@ -5,7 +5,7 @@ services:
     container_name: client-nginx
     image: nginx:stable
     volumes:
-      - ./nginx/log/nginx:/var/log/nginx
+      - ./log/nginx:/var/log/nginx
     ports:
       - '80:80'
 
@@ -15,10 +15,9 @@ services:
     environment:
       - SERVER_HOST=fluent-bit
     volumes:
-      - ./fluent-bit/etc:/fluent-bit/etc
-      - ./fluent-bit/log:/fluent-bit/log
-      - ./nginx/log/nginx:/var/log/nginx
-
+      - ./fluent-bit:/fluent-bit
+      - ./log/fluent-bit:/fluent-bit/log
+      - ./log/nginx:/var/log/nginx
 networks:
   default:
-    name: isucon-dashboard_default
+    name: server_default
