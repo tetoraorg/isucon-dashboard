@@ -3,7 +3,7 @@ version: '3'
 services:
   setup:
     container_name: setup
-    image: elasticsearch:${STACK_VERSION}
+    image: elasticsearch:${STACK_VERSION:-8.2.3}
     volumes:
       - certs:/usr/share/elasticsearch/config/certs
     user: '0'
@@ -53,7 +53,7 @@ services:
 
   es:
     container_name: es
-    image: elasticsearch:${STACK_VERSION}
+    image: elasticsearch:${STACK_VERSION:-8.2.3}
     depends_on:
       setup:
         condition: service_healthy
@@ -96,7 +96,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: kibana:${STACK_VERSION}
+    image: kibana:${STACK_VERSION:-8.2.3}
     depends_on:
       es:
         condition: service_healthy
