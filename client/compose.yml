@@ -15,7 +15,7 @@ services:
     environment:
       - SERVER_HOST=fluent-bit
     volumes:
-      - ./fluent-bit:/fluent-bit
+      - ./fluent-bit:/fluent-bit/etc
       - ./log/fluent-bit:/fluent-bit/log
       - ./log/nginx:/var/log/nginx
 networks:
