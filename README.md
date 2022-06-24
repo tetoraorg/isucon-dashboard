@@ -1,12 +1,59 @@
 # isucon-dashboard
 
-Simple EFK dashboard for ISUCON.
+EFK(Elasticsearch, Fluent Bit, Kibana) dashboard for [ISUCON](https://isucon.net/)
 
-nginx(s) -> fluentd(s) -> fluentd -> elasticsearch -> kibana
+![dashboard](./dashboard.png)
+
+```txt
+Nginx(s),Slow query log(s)
+-> Fluent Bit(s)
+-> Fluent Bit
+-> Elasticsearch
+-> Kibana
+```
 
 ## Quick start
 
-```sh
-cp ./server/.env.example ./server/.env
-./up.sh
+1. start EFK server (with Docker)
+
+```bash
+cd server
+docker compose up --build
+```
+
+2. open another shell & start client
+
+- with Docker
+
+```bash
+cd client
+docker compose up --build
+```
+
+- without Docker (local)
+  - **If you use this dashboard for ISUCON, use this method.**
+  - Fluent Bit is required
+    - install from [official method](https://docs.fluentbit.io/manual/installation/getting-started-with-fluent-bit), or by [brew](https://formulae.brew.sh/formula/fluent-bit) or [asdf](https://github.com/baysao/asdf-fluentbit)
+
+```bash
+cd client
+export SERVER_HOST={{hostname of dashboard}} # default is localhost
+fluent-bit -c ./fluent-bit/fluent-bit.conf
+```
+
+## Example
+
+### Nginx
+
+```bash
+curl localhost
+```
+
+### Slow query log
+
+make sure turning on [Slow query log](./client/mysql/slow.cnf)
+
+```sql
+# in mysql
+SELECT SLEEP(1);
 ```
