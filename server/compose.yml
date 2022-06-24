@@ -134,6 +134,7 @@ services:
       - ./log/fluent-bit:/fluent-bit/log
     ports:
       - '24224:24224'
+      - '24225:24225'
     environment:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - SSL_CERT_FILE=/fluent-bit/certs/ca/ca.crt

@@ -9,6 +9,22 @@ services:
     ports:
       - '80:80'
 
+  client-mysql:
+    container_name: client-mysql
+    image: mysql:8.0
+    command: >
+      bash -c '
+        usermod -o -u 1000 mysql;
+        groupmod -o -g 1000 mysql;
+        chown -R mysql:root /var/log/mysql/;
+        /entrypoint.sh mysqld --user=mysql --console
+      '
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=on
+    volumes:
+      - ./mysql/slow.cnf:/etc/mysql/conf.d/slow.cnf
+      - ./log/mysql:/var/log/mysql
+
   client-fluent-bit:
     container_name: client-flient-bit
     image: fluent/fluent-bit:1.9
@@ -18,6 +34,7 @@ services:
       - ./fluent-bit:/fluent-bit/etc
       - ./log/fluent-bit:/fluent-bit/log
       - ./log/nginx:/var/log/nginx
+      - ./log/mysql:/var/log/mysql
 networks:
   default:
     name: server_default
