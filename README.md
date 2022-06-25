@@ -33,7 +33,7 @@ docker compose up --build
 - without Docker (local)
   - **If you use this dashboard for ISUCON, use this method.**
   - Fluent Bit is required
-    - install from [official method](https://docs.fluentbit.io/manual/installation/getting-started-with-fluent-bit), or by [brew](https://formulae.brew.sh/formula/fluent-bit) or [asdf](https://github.com/baysao/asdf-fluentbit)
+    - install from [official method](https://docs.fluentbit.io/manual/installation/getting-started-with-fluent-bit)
 
 ```bash
 cd client
