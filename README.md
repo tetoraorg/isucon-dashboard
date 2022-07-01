@@ -12,6 +12,16 @@ Nginx(s),Slow query log(s)
 -> Kibana
 ```
 
+## (Optional) Nginx settings
+
+Add `$request_time` to log_format
+
+```txt
+log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for" $request_time';
+```
+
 ## Quick start
 
 1. start EFK server (with Docker)
