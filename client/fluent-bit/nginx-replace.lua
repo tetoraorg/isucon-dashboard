@@ -7,4 +7,3 @@ function cb_replace(tag, timestamp, record)
 
   return 2, timestamp, record
 end
-%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x
