@@ -37,7 +37,7 @@ docker compose up --build
 
 ```bash
 cd client
-export SERVER_HOST={{hostname of dashboard}} # default is localhost
+export DASHBOARD_HOST={{hostname of dashboard}} # default is localhost
 fluent-bit -c ./fluent-bit/fluent-bit.conf
 ```
 
