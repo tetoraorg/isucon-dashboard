@@ -16,14 +16,14 @@ services:
       bash -c '
         usermod -o -u 1000 mysql;
         groupmod -o -g 1000 mysql;
-        chown -R mysql:root /var/log/mysql/;
+        chown -R mysql:root /tmp/;
         /entrypoint.sh mysqld --user=mysql --console
       '
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=on
     volumes:
       - ./mysql/slow.cnf:/etc/mysql/conf.d/slow.cnf
-      - ./log/mysql:/var/log/mysql
+      - ./log/mysql/slow.log:/tmp/slow.log
 
   client-fluent-bit:
     container_name: client-flient-bit
@@ -34,7 +34,7 @@ services:
       - ./fluent-bit:/fluent-bit/etc
       - ./log/fluent-bit:/fluent-bit/log
       - ./log/nginx:/var/log/nginx
-      - ./log/mysql:/var/log/mysql
+      - ./log/mysql/slow.log:/tmp/slow.log
 networks:
   default:
     name: server_default
