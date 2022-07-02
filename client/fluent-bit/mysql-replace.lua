@@ -5,7 +5,8 @@ function cb_replace(tag, timestamp, record)
   end
 
   local query = record["query"]
-  query = string.gsub(query, '".*"', "S")
+  query = string.gsub(query, '"[^"]*"', "S")
+  query = string.gsub(query, "'[^']*'", "S")
   query = string.gsub(query, '%d+', "N")
   record["query"] = query
 
