@@ -1,6 +1,6 @@
 function cb_replace(tag, timestamp, record)
   -- discard not-parsed records
-  if record["time"] == nil then
+  if record["query"] == nil then
     return -1, 0, 0
   end
 
