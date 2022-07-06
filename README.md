@@ -47,6 +47,8 @@ docker compose up --build
 
 ```bash
 cd client
+git clone git@github.com:tetoraorg/isucon-setup.git /tmp/isucon-setup
+cp /tmp/isucon-setup/fluent-bit .
 export DASHBOARD_HOST={{hostname of dashboard}} # default is localhost
 fluent-bit -c ./fluent-bit/fluent-bit.conf
 ```
