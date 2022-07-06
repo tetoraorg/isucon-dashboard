@@ -71,14 +71,12 @@ services:
     volumes:
       - certs:/usr/share/kibana/config/certs
       - kibanadata:/usr/share/kibana/data
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - ${KIBANA_PORT}:5601
     environment:
-      - SERVERNAME=kibana
-      - ELASTICSEARCH_HOSTS=https://es:9200
-      - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
-      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
+      - KIBANA_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
     mem_limit: ${MEM_LIMIT}
     healthcheck:
       test:

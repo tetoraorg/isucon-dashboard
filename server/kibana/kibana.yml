@@ -1,0 +1,28 @@
+server:
+  name: kibana
+  port: 5601
+  host: 0.0.0.0
+  ssl:
+    enabled: true
+    certificate: config/certs/kibana/kibana.crt
+    key: config/certs/kibana/kibana.key
+logging:
+  root:
+    level: info
+elasticsearch:
+  hosts:
+    - https://es:9200
+  username: kibana_system
+  password: ${ELASTICSEARCH_PASSWORD}
+  ssl:
+    certificateAuthorities:
+      - config/certs/ca/ca.crt
+xpack:
+  reporting:
+    enabled: false
+    roles:
+      enabled: false
+  security:
+    encryptionKey: ${KIBANA_ENCRYPTION_KEY}
+  encryptedSavedObjects:
+    encryptionKey: ${KIBANA_ENCRYPTION_KEY}
