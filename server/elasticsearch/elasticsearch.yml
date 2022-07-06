@@ -1,0 +1,31 @@
+node:
+  name: es
+network:
+  host: 0.0.0.0
+discovery:
+  type: single-node
+cluster:
+  name: ${CLUSTER_NAME}
+bootstrap:
+  memory_lock: true
+ingest:
+  geoip:
+    downloader:
+      enabled: false
+xpack:
+  security:
+    enabled: true
+    http:
+      ssl:
+        enabled: true
+        key: certs/es/es.key
+        certificate: certs/es/es.crt
+        certificate_authorities: certs/ca/ca.crt
+        verification_mode: certificate
+    transport:
+      ssl:
+        enabled: true
+        key: certs/es/es.key
+        certificate: certs/es/es.crt
+        certificate_authorities: certs/ca/ca.crt
+        verification_mode: certificate
