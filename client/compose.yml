@@ -29,6 +29,7 @@ services:
   client-fluent-bit:
     container_name: client-flient-bit
     image: fluent/fluent-bit:1.9
+    command: fluent-bit -c /fluent-bit/etc/fluent-bit.conf -l /fluent-bit/log/fluent-bit.log -v
     environment:
       - DASHBOARD_HOST=fluent-bit
     volumes:
