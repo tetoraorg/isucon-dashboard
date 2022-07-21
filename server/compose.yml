@@ -3,7 +3,7 @@ version: '3'
 services:
   setup:
     container_name: setup
-    image: elasticsearch:${STACK_VERSION:-8.2.3}
+    image: elasticsearch:${STACK_VERSION}
     command: /tmp/setup.sh
     user: '0'
     volumes:
@@ -20,7 +20,7 @@ services:
 
   es:
     container_name: es
-    image: elasticsearch:${STACK_VERSION:-8.2.3}
+    image: elasticsearch:${STACK_VERSION}
     depends_on:
       setup:
         condition: service_healthy
@@ -51,7 +51,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: kibana:${STACK_VERSION:-8.2.3}
+    image: kibana:${STACK_VERSION}
     depends_on:
       es:
         condition: service_healthy
