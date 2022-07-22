@@ -34,7 +34,9 @@ services:
     environment:
       - CLUSTER_NAME=${CLUSTER_NAME}
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-    mem_limit: ${MEM_LIMIT}
+    # NOTE: mem_limit should be 4GB at least.
+    # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_install_docker_desktop_or_docker_engine
+    mem_limit: ${ES_MEM_LIMIT}
     ulimits:
       memlock:
         soft: -1
@@ -64,7 +66,7 @@ services:
     environment:
       - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
       - KIBANA_ENCRYPTION_KEY=${KIBANA_ENCRYPTION_KEY}
-    mem_limit: ${MEM_LIMIT}
+    mem_limit: 2g
     healthcheck:
       test:
         [
@@ -91,6 +93,7 @@ services:
     environment:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - SSL_CERT_FILE=/fluent-bit/certs/ca/ca.crt
+    mem_limit: 1g
 
 volumes:
   certs:
